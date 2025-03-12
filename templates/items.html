@@ -1,0 +1,12 @@
+
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Items from MongoDB</h1>
+    <ul>
+    {% for item in items %}
+        <li><strong>{{ item.name }}</strong>: {{ item['description'] }}</li>
+    {% else %}
+        <li>No items found.</li>
+    </ul>
+{% endfor %}
+{% endblock %}
