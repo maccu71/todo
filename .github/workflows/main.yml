@@ -22,15 +22,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        # Extract all required packages (both simple imports and from xx import yy)
-        # First, we capture both forms of imports: 'import xx' and 'from xx import yy'
-        required_packages=$(grep -hoP "(?<=import\s)(\w+)" $(git ls-files '*.py') | sort | uniq)
-        required_packages+=$(grep -hoP "(?<=from\s)(\w+)(?=\simport)" $(git ls-files '*.py') | sort | uniq)
-        
-        # Install all required packages (install xx for 'from xx import yy' cases)
-        for package in $required_packages; do
-          pip install "$package"  # Install the required packages
-        done
+        pip install -r requirements.txt
     - name: Run Pylint
       run: |
         pylint $(git ls-files '*.py')  # Run Pylint on Python files
