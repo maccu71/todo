@@ -24,6 +24,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install pymongo==4.11.2
         pip install -r requirements.txt
+        pip install pylint
     - name: Run Pylint
       run: |
         pylint $(git ls-files '*.py')  # Run Pylint on Python files
